@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocolo de Recrutamento 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Rajdhani', sans-serif; 
+            background: #05050c;
+            /* Fundo com iluminação dinâmica */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(157, 78, 221, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+            color: white; 
+        }
+        
+        .glass { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+
+        .pulse-btn { animation: pulse 2s infinite; }
+        @keyframes pulse { 
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.4); } 
+            70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(0, 240, 255, 0); } 
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); } 
+        }
+
+        #video-overlay { cursor: pointer; transition: 0.3s; }
+        #video-overlay:hover { border-color: #00f0ff; }
+    </style>
+</head>
+<body class="flex flex-col items-center min-h-screen p-4">
+
+    <div class="w-full max-w-sm">
+        <!-- Badge de Exclusividade -->
+        <div class="flex justify-center gap-2 mb-6">
+            <span class="px-4 py-1 bg-gradient-to-r from-yellow-500 to-amber-600 rounded-full text-[10px] font-bold uppercase tracking-widest text-black shadow-lg shadow-yellow-500/20">100% Gratuito</span>
+            <span class="px-4 py-1 bg-cyan-600 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-cyan-600/20">Exclusivo 2026</span>
+        </div>
+
+        <h1 class="text-2xl font-bold text-center mb-6 text-white uppercase tracking-widest">
+            Protocolo <span class="text-cyan-400">Inédito</span>
+        </h1>
+        
+        <!-- PLAYER PERSONALIZADO -->
+        <div id="video-container" class="relative rounded-xl overflow-hidden border border-purple-500/50 shadow-[0_0_30px_rgba(157,78,221,0.2)] mb-8">
+            <div id="video-overlay" class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm">
+                <i class="fa-solid fa-play text-5xl text-cyan-400 mb-4 animate-bounce"></i>
+                <p class="text-lg font-bold uppercase tracking-widest">Clique para assistir</p>
+                <p class="text-[10px] text-gray-400 mt-2 uppercase tracking-widest">Acesso liberado agora</p>
+            </div>
+            <video id="main-video" class="w-full" playsinline>
+                <source src="0526.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- Botão de Ação -->
+        <a href="index.html" class="block w-full py-4 text-center bg-gradient-to-r from-purple-600 to-cyan-500 rounded-lg font-bold text-lg uppercase tracking-wider pulse-btn mb-10 shadow-xl shadow-cyan-500/20">
+            Reivindicar Vaga Grátis
+        </a>
+
+        <!-- Benefícios -->
+        <div class="space-y-4">
+            <div class="glass p-4 rounded-lg border-l-4 border-yellow-500">
+                <h3 class="font-bold text-yellow-500 uppercase text-sm tracking-wide">Acesso 100% Grátis</h3>
+                <p class="text-xs text-gray-400">Você não paga nada para iniciar este novo método.</p>
+            </div>
+            <div class="glass p-4 rounded-lg border-l-4 border-cyan-400">
+                <h3 class="font-bold text-cyan-300 uppercase text-sm tracking-wide">Conteúdo Exclusivo 2026</h3>
+                <p class="text-xs text-gray-400">Uma tecnologia inédita que está mudando o mercado.</p>
+            </div>
+            <div class="glass p-4 rounded-lg border-l-4 border-purple-400">
+                <h3 class="font-bold text-purple-300 uppercase text-sm tracking-wide">Vagas Limitadas</h3>
+                <p class="text-xs text-gray-400">Como é gratuito e exclusivo, encerramos as inscrições rapidamente.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const overlay = document.getElementById('video-overlay');
+        const video = document.getElementById('main-video');
+
+        overlay.addEventListener('click', () => {
+            overlay.style.display = 'none'; 
+            video.setAttribute('controls', 'true');
+            video.play(); 
+        });
+    </script>
+</body>
+</html>

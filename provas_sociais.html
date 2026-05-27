@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição Confirmada - Provas Sociais</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --bg-color: #05050c;
+            --card-bg: rgba(10, 10, 25, 0.75);
+            --neon-blue: #00f0ff;
+            --neon-purple: #9d4edd;
+            --neon-green: #39ff14;
+            --text-primary: #ffffff;
+            --text-secondary: #8b8fba;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(157, 78, 221, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.12) 0%, transparent 40%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Efeito de Vidro Inteligente (Glassmorphism) */
+        .glass-panel {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+        }
+
+        /* Animação de Pulso de Neon para o Botão Principal */
+        @keyframes neonPulse {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(0, 240, 255, 0.4), 0 0 30px rgba(157, 78, 221, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(0, 240, 255, 0.8), 0 0 50px rgba(157, 78, 221, 0.4);
+                transform: scale(1.02);
+            }
+        }
+
+        .pulse-button {
+            animation: neonPulse 2s infinite ease-in-out;
+        }
+
+        /* Balão de Notificação de Saques Deslizante */
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .notification-toast {
+            animation: slideInUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .notification-toast.hide {
+            animation: fadeOut 0.5s forwards;
+        }
+
+        /* Thumbnails de Vídeo Compactas */
+        .video-thumb-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 9/12; /* Miniaturas elegantes e compactas */
+            background-color: #0c0c1e;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .video-thumb-container:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Modal Expansor de Vídeo */
+        .modal-video-container {
+            width: 100%;
+            max-width: 360px; /* Largura ideal para simular tela vertical de smartphone */
+            aspect-ratio: 9/16;
+            background-color: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.3);
+            position: relative;
+        }
+
+        .video-overlay-gradient {
+            background: linear-gradient(to top, rgba(5,5,12,0.95) 0%, rgba(5,5,12,0.4) 30%, transparent 100%);
+        }
+
+        .play-btn-glow {
+            text-shadow: 0 0 15px var(--neon-blue);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-4 pb-28 md:p-8">
+
+    <!-- Logotipo e Status de Sucesso -->
+    <header class="w-full max-w-2xl text-center mt-4 mb-4">
+        <div class="inline-flex items-center gap-2 font-orbitron text-lg md:text-2xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-[#00f0ff] to-[#9d4edd] mb-1">
+            <i class="fa-solid fa-circle-check text-[#39ff14] drop-shadow-[0_0_10px_#39ff14]"></i>
+            CADASTRO PRÉ-APROVADO
+        </div>
+        <p class="text-[10px] md:text-xs tracking-widest font-semibold uppercase text-[#8b8fba]">VÍDEOS DE RESULTADOS DA COMUNIDADE</p>
+    </header>
+
+    <!-- Banner de Boas-vindas e Status -->
+    <main class="w-full max-w-2xl flex flex-col gap-4">
+        
+        <section class="glass-panel rounded-xl p-4 relative overflow-hidden">
+            <!-- Barra superior brilhante -->
+            <div class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#00f0ff] to-[#9d4edd]"></div>
+            
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-[#39ff14] border border-[#39ff14]/30 shrink-0">
+                    <i class="fa-solid fa-shield-halved text-base"></i>
+                </div>
+                <div>
+                    <h2 class="font-orbitron font-bold text-xs md:text-sm text-white">REQUISITOS PREENCHIDOS!</h2>
+                    <p class="text-[10px] text-[#8b8fba]">Vaga reservada com sucesso.</p>
+                </div>
+            </div>
+            
+            <p class="text-xs text-gray-300 leading-relaxed">
+                Parabéns! Veja abaixo os depoimentos rápidos dos nossos parceiros que começaram hoje mesmo. Clique para assistir o vídeo e ative seu acesso de trabalho.
+            </p>
+        </section>
+
+        <!-- Prova Social 1: Painel Geral de Rendimentos de Usuários -->
+        <section class="glass-panel rounded-xl p-4">
+            <div class="grid grid-cols-2 gap-3 text-center">
+                <div class="bg-black/30 p-2.5 rounded-lg border border-white/5">
+                    <span class="text-[9px] uppercase text-[#8b8fba] block mb-0.5">Pago Hoje</span>
+                    <span class="font-orbitron font-bold text-sm md:text-base text-[#39ff14] drop-shadow-[0_0_5px_rgba(57,255,20,0.3)]">R$ 14.850,00</span>
+                </div>
+                <div class="bg-black/30 p-2.5 rounded-lg border border-white/5">
+                    <span class="text-[9px] uppercase text-[#8b8fba] block mb-0.5">Parceiros Online</span>
+                    <span class="font-orbitron font-bold text-sm md:text-base text-white">4.129 ativos</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRELHA DE VÍDEOS EM 2 COLUNAS (LADO A LADO) -->
+        <section class="flex flex-col gap-3">
+            <h3 class="font-orbitron text-[11px] font-bold text-[#9d4edd] uppercase tracking-widest px-1">Toque em um depoimento para assistir</h3>
+            
+            <div class="grid grid-cols-2 gap-3">
+                
+                <!-- VÍDEO COMPACTO 1 -->
+                <div class="glass-panel rounded-xl p-2.5 flex flex-col gap-2 cursor-pointer btn-play-video" 
+                     data-video-src="964821c3-3585-4cc7-8ebc-5e9a2430c885.mp4"
+                     data-nome="Jefferson D."
+                     data-ganho="R$ 1600,00"
+                     data-banco="Mercado Pago"
+                     data-frase="No começo achei que era caô mas caiu certinho!">
+                    
+                    <div class="flex items-center justify-between gap-1">
+                        <span class="text-[10px] font-bold text-white truncate">Jefferson D.</span>
+                        <span class="bg-[#39ff14]/10 text-[#39ff14] px-1 py-0.5 rounded text-[8px] font-orbitron font-bold">+R$1600</span>
+                    </div>
+
+                    <!-- Thumbnail Compacta -->
+                    <div class="video-thumb-container">
+                        <!-- Imagem estática de fundo ou vídeo em looping curto estático -->
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('Inscrição Confirmada - Provas Sociais e mais 10 páginas - Pessoal — Microsoft​ Edge 27_05_2026 00_27_33.png');"></div>
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-full bg-[#05050c]/80 border border-[#00f0ff] flex items-center justify-center play-btn-glow">
+                                <i class="fa-solid fa-play text-white text-xs ml-0.5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VÍDEO COMPACTO 2 -->
+                <div class="glass-panel rounded-xl p-2.5 flex flex-col gap-2 cursor-pointer btn-play-video" 
+                     data-video-src="59ac3b13-08c2-4d17-9032-c82bf162428c.mov"
+                     data-nome="João benicio"
+                     data-ganho="R$ 700,50"
+                     data-banco="Nubank"
+                     data-frase="Meu PIX caiu em menos de 5 minutos, super confiável!">
+                    
+                    <div class="flex items-center justify-between gap-1">
+                        <span class="text-[10px] font-bold text-white truncate">João benicio</span>
+                        <span class="bg-[#39ff14]/10 text-[#39ff14] px-1 py-0.5 rounded text-[8px] font-orbitron font-bold">+R$700</span>
+                    </div>
+
+                    <!-- Thumbnail Compacta -->
+                    <div class="video-thumb-container">
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('Inscrição Confirmada - Provas Sociais e mais 10 páginas - Pessoal — Microsoft​ Edge 27_05_2026 00_31_04.png');"></div>
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-full bg-[#05050c]/80 border border-[#00f0ff] flex items-center justify-center play-btn-glow">
+                                <i class="fa-solid fa-play text-white text-xs ml-0.5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VÍDEO COMPACTO 3 -->
+                <div class="glass-panel rounded-xl p-2.5 flex flex-col gap-2 cursor-pointer btn-play-video" 
+                     data-video-src="bc67f83b-14d8-41ea-9d13-1d1dc719a8c6.mp4"
+                     data-nome="Larissa Gomes"
+                     data-ganho="R$ 2000,00"
+                     data-banco="Mercado Pago"
+                     data-frase="O suporte deles ajuda muito no começo!">
+                    
+                    <div class="flex items-center justify-between gap-1">
+                        <span class="text-[10px] font-bold text-white truncate">Larissa Gomes</span>
+                        <span class="bg-[#39ff14]/10 text-[#39ff14] px-1 py-0.5 rounded text-[8px] font-orbitron font-bold">+R$2000</span>
+                    </div>
+
+                    <!-- Thumbnail Compacta -->
+                    <div class="video-thumb-container">
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('Reprodutor Multimídia 27_05_2026 00_33_47.png');"></div>
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-full bg-[#05050c]/80 border border-[#00f0ff] flex items-center justify-center play-btn-glow">
+                                <i class="fa-solid fa-play text-white text-xs ml-0.5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VÍDEO COMPACTO 4 -->
+                <div class="glass-panel rounded-xl p-2.5 flex flex-col gap-2 cursor-pointer btn-play-video" 
+                     data-video-src="e84c31cc-5ff1-48d6-be80-392e6b25df59.mov"
+                     data-nome="Pedro Dias"
+                     data-ganho="R$ 1000,00"
+                     data-banco="Mercado pago"
+                     data-frase="Sem palavras, pagaram certinho e muito rápido!">
+                    
+                    <div class="flex items-center justify-between gap-1">
+                        <span class="text-[10px] font-bold text-white truncate">Pedro Dias</span>
+                        <span class="bg-[#39ff14]/10 text-[#39ff14] px-1 py-0.5 rounded text-[8px] font-orbitron font-bold">+R$1000</span>
+                    </div>
+
+                    <!-- Thumbnail Compacta -->
+                    <div class="video-thumb-container">
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('Reprodutor Multimídia 27_05_2026 00_36_11.png');"></div>
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-full bg-[#05050c]/80 border border-[#00f0ff] flex items-center justify-center play-btn-glow">
+                                <i class="fa-solid fa-play text-white text-xs ml-0.5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VÍDEO COMPACTO 3 -->
+                <div class="glass-panel rounded-xl p-2.5 flex flex-col gap-2 cursor-pointer btn-play-video" 
+                     data-video-src="e860e76c-1bf8-492d-94fc-e8971a374bf4.mov"
+                     data-nome="Marcos R."
+                     data-ganho="R$ 95,00"
+                     data-banco="Mercado Pago"
+                     data-frase="O suporte deles ajuda muito no começo!">
+                    
+                    <div class="flex items-center justify-between gap-1">
+                        <span class="text-[10px] font-bold text-white truncate">Marcos R.</span>
+                        <span class="bg-[#39ff14]/10 text-[#39ff14] px-1 py-0.5 rounded text-[8px] font-orbitron font-bold">+R$95</span>
+                    </div>
+
+                    <!-- Thumbnail Compacta -->
+                    <div class="video-thumb-container">
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('Reprodutor Multimídia 27_05_2026 00_37_34.png');"></div>
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-full bg-[#05050c]/80 border border-[#00f0ff] flex items-center justify-center play-btn-glow">
+                                <i class="fa-solid fa-play text-white text-xs ml-0.5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VÍDEO COMPACTO 4 -->
+                <div class="glass-panel rounded-xl p-2.5 flex flex-col gap-2 cursor-pointer btn-play-video" 
+                     data-video-src="e96c0e63-e4e2-4031-9a92-31865356eaa0.mov"
+                     data-nome="Ryan Oliver"
+                     data-ganho="R$ 1000,00"
+                     data-banco="Nubank"
+                     data-frase="Sem palavras, pagaram certinho e muito rápido!">
+                    
+                    <div class="flex items-center justify-between gap-1">
+                        <span class="text-[10px] font-bold text-white truncate">Ryan Oliver</span>
+                        <span class="bg-[#39ff14]/10 text-[#39ff14] px-1 py-0.5 rounded text-[8px] font-orbitron font-bold">+R$1000</span>
+                    </div>
+
+                    <!-- Thumbnail Compacta -->
+                    <div class="video-thumb-container">
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('Reprodutor Multimídia 27_05_2026 00_39_42.png');"></div>
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-full bg-[#05050c]/80 border border-[#00f0ff] flex items-center justify-center play-btn-glow">
+                                <i class="fa-solid fa-play text-white text-xs ml-0.5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Seção FAQ Rápida -->
+        <section class="glass-panel rounded-xl p-4 flex flex-col gap-2.5">
+            <h3 class="font-orbitron text-[11px] font-bold text-white uppercase tracking-wider">Perguntas Comuns</h3>
+            <div class="flex flex-col gap-2 text-xs">
+                <div class="border-b border-white/5 pb-2">
+                    <p class="font-bold text-[#00f0ff] mb-0.5">Como funcionam as tarefas?</p>
+                    <p class="text-gray-400">Ao clicar abaixo, você falará diretamente com nosso suporte operacional para ativar sua conta e receber o link oficial de tarefas.</p>
+                </div>
+                <div>
+                    <p class="font-bold text-[#00f0ff] mb-0.5">Existe custo para começar?</p>
+                    <p class="text-gray-400">Não! Nosso treinamento e a disponibilização da sua conta inicial são totalmente gratuitos.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Botão Fixo de Ação Principal no Rodapé -->
+    <div class="fixed bottom-0 left-0 w-full p-4 bg-[#05050c]/85 backdrop-filter backdrop-blur-md border-t border-white/10 flex justify-center z-40">
+        <div class="w-full max-w-2xl">
+            <!-- NOTA: Mude o link href abaixo para direcionar para onde você quer enviar seu candidato -->
+            <a href="file:///C:/Users/renan/Desktop/site%20de%20trampo%20nu/xereca.html" id="cta-button" class="w-full py-4 bg-gradient-to-r from-[#00f0ff] to-[#9d4edd] hover:brightness-110 active:scale-98 text-white font-orbitron font-black uppercase text-center rounded-xl shadow-[0_0_20px_rgba(0,240,255,0.3)] cursor-pointer tracking-wider text-[11px] md:text-sm flex items-center justify-center gap-2 transition-all pulse-button">
+                <span>REIVINDICAR MINHA VAGA AGORA</span>
+                <i class="fa-solid fa-fire text-amber-400 animate-bounce"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- MODAL EXPANSOR DE VÍDEO (TELA CHEIA) -->
+    <div id="videoModal" class="fixed inset-0 bg-[#05050c]/95 backdrop-filter backdrop-blur-md hidden flex-col items-center justify-center p-4 z-50">
+        <!-- Botão de Fechar Modal no Topo -->
+        <button id="closeModalBtn" class="absolute top-4 right-4 text-white hover:text-red-500 text-3xl z-[60] focus:outline-none bg-black/40 w-12 h-12 rounded-full flex items-center justify-center border border-white/10">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-video-container">
+            <video id="modalVideoPlayer" class="w-full h-full object-cover" loop playsinline preload="auto"></video>
+            
+            <!-- Overlay escuro e metadados no fundo do vídeo -->
+            <div class="absolute inset-0 video-overlay-gradient flex flex-col justify-end p-5 pointer-events-none">
+                <div class="text-left w-full mb-2">
+                    <div class="flex items-center gap-2 mb-1.5">
+                        <div class="w-7 h-7 rounded-full bg-[#9d4edd]/20 border border-[#9d4edd]/50 flex items-center justify-center font-bold text-xs text-white">
+                            <span id="modalIniciais">JD</span>
+                        </div>
+                        <div>
+                            <h4 id="modalNome" class="font-bold text-white text-xs leading-none">Jefferson D.</h4>
+                            <span id="modalBanco" class="text-[9px] text-[#39ff14] flex items-center gap-1 mt-0.5">
+                                <i class="fa-solid fa-circle text-[5px] animate-pulse"></i> Ativo via Mercado Pago
+                            </span>
+                        </div>
+                        <span id="modalSeloGanho" class="ml-auto bg-[#00f0ff]/15 text-[#00f0ff] border border-[#00f0ff]/30 px-2 py-0.5 rounded text-[10px] font-orbitron font-bold">+ R$ 130,00</span>
+                    </div>
+                    <p id="modalFrase" class="text-xs text-gray-200 italic">"No começo achei que era caô mas caiu certinho!"</p>
+                </div>
+            </div>
+
+            <!-- Botão Gigante de Play/Pause Visual Central -->
+            <div id="modalPlayPauseOverlay" class="absolute inset-0 flex items-center justify-center cursor-pointer">
+                <div id="modalPlayIcon" class="w-16 h-16 rounded-full bg-black/60 border-2 border-[#00f0ff] flex items-center justify-center play-btn-glow opacity-0 transition-opacity duration-300">
+                    <i class="fa-solid fa-play text-white text-2xl ml-1"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container para Notificações flutuantes de saques rápidos -->
+    <div id="toast-container" class="fixed top-4 left-4 right-4 md:left-auto md:right-6 md:top-6 z-40 flex flex-col gap-3 pointer-events-none max-w-sm">
+        <!-- Os balões de notificação de PIX serão inseridos dinamicamente aqui via Javascript -->
+    </div>
+
+    <script>
+        // --- SISTEMA DINÂMICO DE SIMULAÇÃO DE PIX EM TEMPO REAL ---
+        const nomesCandidatos = [
+            "Matheus S.", "Roberta M.", "Thiago A.", "Juliana F.", "Gabriel L.", 
+            "Danilo P.", "Erica O.", "Lucas V.", "Patrícia K.", "Bruno T.", 
+            "Camila R.", "Felipe G.", "Sérgio D.", "Tatiana B.", "Renato N."
+        ];
+
+        const valoresSaque = [
+            "R$ 85,00", "R$ 120,00", "R$ 150,00", "R$ 180,00", "R$ 220,00", 
+            "R$ 240,00", "R$ 310,00", "R$ 95,00", "R$ 135,00", "R$ 170,00"
+        ];
+
+        const carteirasDisponiveis = [
+            { nome: "Mercado Pago", icon: "fa-credit-card", cor: "text-blue-400" },
+            { nome: "Nubank", icon: "fa-wallet", cor: "text-purple-400" }
+        ];
+
+        // Instância global do contexto de áudio
+        let audioCtx = null;
+
+        // Função segura para inicializar/desbloquear o áudio do navegador no primeiro toque do usuário
+        function ativarAudioNavegador() {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            } catch (e) {
+                console.log("Aguardando interação física para habilitar áudio.");
+            }
+        }
+
+        // Registra ouvintes para desbloquear o áudio assim que o usuário tocar na tela do celular
+        document.addEventListener('click', ativarAudioNavegador, { once: true });
+        document.addEventListener('touchstart', ativarAudioNavegador, { once: true });
+
+        // Função para disparar a notificação flutuante de PIX
+        function gerarNotificacaoPIX() {
+            const container = document.getElementById('toast-container');
+            if(!container) return;
+            
+            // Escolhe dados aleatórios
+            const nomeAleatorio = nomesCandidatos[Math.floor(Math.random() * nomesCandidatos.length)];
+            const valorAleatorio = valoresSaque[Math.floor(Math.random() * valoresSaque.length)];
+            const carteiraAleatoria = carteirasDisponiveis[Math.floor(Math.random() * carteirasDisponiveis.length)];
+
+            // Cria o elemento da notificação
+            const toast = document.createElement('div');
+            toast.className = "notification-toast glass-panel p-4 rounded-xl flex items-center gap-3 pointer-events-auto border-l-4 border-l-[#39ff14] shadow-2xl transition-all duration-300";
+            
+            // Conteúdo visual no tema do site
+            toast.innerHTML = `
+                <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-[#39ff14] border border-[#39ff14]/20 shrink-0">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div class="flex-1">
+                    <p class="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">SAQUE REALIZADO COM SUCESSO</p>
+                    <p class="text-xs font-bold text-white">${nomeAleatorio} sacou <span class="text-[#39ff14] font-orbitron">${valorAleatorio}</span></p>
+                    <p class="text-[9px] text-gray-400 flex items-center gap-1 mt-0.5">
+                        <i class="fa-solid ${carteiraAleatoria.icon} ${carteiraAleatoria.cor}"></i> via ${carteiraAleatoria.nome}
+                    </p>
+                </div>
+            `;
+
+            container.appendChild(toast);
+
+            // Toca o efeito sonoro do bip se o áudio estiver desbloqueado
+            tocarSomNotificacao();
+
+            // Agenda a remoção do balão de notificação após 5 segundos
+            setTimeout(() => {
+                toast.classList.add('hide');
+                setTimeout(() => {
+                    toast.remove();
+                }, 500);
+            }, 5000);
+        }
+
+        // Sintetizador de áudio nativo para gerar som de 'bip' de PIX de forma segura e autônoma
+        function tocarSomNotificacao() {
+            try {
+                // Se o contexto não estiver inicializado ou ainda estiver suspenso pelos bloqueios do navegador, aborta sem erro
+                if (!audioCtx || audioCtx.state === 'suspended') return;
+
+                // Primeiro bip agudo
+                let osc = audioCtx.createOscillator();
+                let gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(880, audioCtx.currentTime); // Nota Lá (agudo)
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime); // Volume suave
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+                osc.start(audioCtx.currentTime);
+                osc.stop(audioCtx.currentTime + 0.15);
+
+                // Segundo bip agudo logo após
+                setTimeout(() => {
+                    if (!audioCtx || audioCtx.state === 'suspended') return;
+                    let osc2 = audioCtx.createOscillator();
+                    let gain2 = audioCtx.createGain();
+                    osc2.connect(gain2);
+                    gain2.connect(audioCtx.destination);
+                    osc2.type = 'sine';
+                    osc2.frequency.setValueAtTime(1046.5, audioCtx.currentTime); // Nota Dó (ainda mais agudo)
+                    gain2.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                    gain2.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+                    osc2.start(audioCtx.currentTime);
+                    osc2.stop(audioCtx.currentTime + 0.2);
+                }, 80);
+
+            } catch (e) {
+                // Tratamento silencioso caso ocorra bloqueio de recursos
+                console.log("Som de notificação pausado pela política do navegador.");
+            }
+        }
+
+        // --- SISTEMA DE PLAYER DE VÍDEO EXPANSÍVEL (MODAL) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const videoButtons = document.querySelectorAll('.btn-play-video');
+            const videoModal = document.getElementById('videoModal');
+            const modalVideoPlayer = document.getElementById('modalVideoPlayer');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const modalPlayIcon = document.getElementById('modalPlayIcon');
+            const modalPlayPauseOverlay = document.getElementById('modalPlayPauseOverlay');
+
+            // Elementos de metadados do Modal
+            const modalIniciais = document.getElementById('modalIniciais');
+            const modalNome = document.getElementById('modalNome');
+            const modalBanco = document.getElementById('modalBanco');
+            const modalSeloGanho = document.getElementById('modalSeloGanho');
+            const modalFrase = document.getElementById('modalFrase');
+
+            // Abrir o vídeo expandido no modal
+            videoButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const videoSrc = btn.getAttribute('data-video-src');
+                    const nome = btn.getAttribute('data-nome');
+                    const ganho = btn.getAttribute('data-ganho');
+                    const banco = btn.getAttribute('data-banco');
+                    const frase = btn.getAttribute('data-frase');
+
+                    // Definir conteúdo do Modal
+                    modalVideoPlayer.src = videoSrc;
+                    modalNome.textContent = nome;
+                    modalSeloGanho.textContent = "+ " + ganho;
+                    modalFrase.textContent = `"${frase}"`;
+                    modalIniciais.textContent = nome.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                    modalBanco.innerHTML = `<i class="fa-solid fa-circle text-[5px] animate-pulse"></i> Ativo via ${banco}`;
+
+                    // Mostrar o Modal
+                    videoModal.classList.remove('hidden');
+                    videoModal.classList.add('flex');
+
+                    // Iniciar reprodução automática do vídeo
+                    modalVideoPlayer.play().catch(e => {
+                        console.log("Reprodução automática aguardando interação física.");
+                        // Caso falhe por segurança de áudio, mostrar o ícone de Play
+                        modalPlayIcon.classList.remove('opacity-0');
+                    });
+                });
+            });
+
+            // Fechar Modal
+            function fecharModal() {
+                modalVideoPlayer.pause();
+                modalVideoPlayer.src = ""; // Limpa a memória do player
+                videoModal.classList.add('hidden');
+                videoModal.classList.remove('flex');
+                modalPlayIcon.classList.add('opacity-0');
+            }
+
+            closeModalBtn.addEventListener('click', fecharModal);
+
+            // Clicar fora da caixa do player também fecha o modal
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) {
+                    fecharModal();
+                }
+            });
+
+            // Controle de Play/Pause ao tocar no player do Modal
+            modalPlayPauseOverlay.addEventListener('click', () => {
+                if (modalVideoPlayer.paused) {
+                    modalVideoPlayer.play();
+                    modalPlayIcon.classList.add('opacity-0');
+                } else {
+                    modalVideoPlayer.pause();
+                    modalPlayIcon.classList.remove('opacity-0');
+                }
+            });
+
+            // Inicia o disparador infinito de saques fictícios sem depender do carregamento de vídeos e mídias externas
+            // Dispara o primeiro após 1.5 segundos
+            setTimeout(gerarNotificacaoPIX, 1500);
+
+            // Fica gerando novos balões de saque de forma aleatória a cada 6 a 10 segundos
+            setInterval(() => {
+                gerarNotificacaoPIX();
+            }, Math.floor(Math.random() * (10000 - 6000 + 1) + 6000));
+        });
+    </script>
+</body>
+</html>
